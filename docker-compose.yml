@@ -1,0 +1,24 @@
+version: "3.4"
+
+services:
+  # Planetscale local
+  planetscale:
+    build:
+      context: .
+    container_name: planetscale_local
+    hostname: planetscale-local
+    ports:
+      - 3000:8080
+    environment:
+      - MYSQL_URL=mysql://planetscale:planetscale@mysql:3306/planetscale
+      - PORT=8080
+  # MYSQL
+  mysql:
+    image: mysql:8.0.32
+    container_name: mysql
+    hostname: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=planetscale
+      - MYSQL_DATABASE=planetscale
+      - MYSQL_USER=planetscale
+      - MYSQL_PASSWORD=planetscale
