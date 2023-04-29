@@ -13,7 +13,11 @@ const config = {
   ],
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
-  extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  extends: [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+  ],
   rules: {
     "@typescript-eslint/consistent-type-imports": [
       "warn",
