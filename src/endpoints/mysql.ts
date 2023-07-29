@@ -63,7 +63,7 @@ interface QueryExecuteResponse {
 
 export async function executeQuery(
   req: Request,
-  res: Response<QueryExecuteResponse>
+  res: Response<QueryExecuteResponse>,
 ) {
   const { body } = req;
   const { query, session = randomUUID() } = body as {
@@ -98,12 +98,12 @@ export async function executeQuery(
         if (Array.isArray(row)) {
           row.forEach((singleRow) => {
             const lengths: string[] = [];
-            let rawValue = ``;
+            let rawValue = "";
 
-            for (const field of result.fields!) {
+            for (const field of result.fields as Field[]) {
               const fieldValue = singleRow[field.name];
 
-              if (typeof field !== `undefined`) {
+              if (typeof field !== "undefined") {
                 if (field === null) {
                   lengths.push("0");
                 } else {
@@ -122,12 +122,12 @@ export async function executeQuery(
           });
         } else if (typeof row.procotol41 === "undefined") {
           const lengths: string[] = [];
-          let rawValue = ``;
+          let rawValue = "";
 
-          for (const field of result.fields!) {
+          for (const field of result.fields as Field[]) {
             const fieldValue = (row as RowDataPacket)[field.name];
 
-            if (typeof field !== `undefined`) {
+            if (typeof field !== "undefined") {
               if (field === null) {
                 lengths.push("0");
               } else {
@@ -162,7 +162,7 @@ export async function executeQuery(
       session,
       setTimeout(() => {
         connection.release();
-      }, 30_000)
+      }, 30_000),
     );
 
     return res.json({ result, session });
@@ -171,6 +171,7 @@ export async function executeQuery(
 
     return res.status(500).json({
       error: {
+        // rome-ignore lint/suspicious/noExplicitAny: Custom Error logic here
         code: (_ as any).code || "UNKNOWN_CODE",
         message: (_ as Error).message,
       },
@@ -180,7 +181,7 @@ export async function executeQuery(
   }
 }
 
-export async function createSession(req: Request, res: Response) {
+export async function createSession(_req: Request, res: Response) {
   const sessionId = randomUUID();
   const connection = await pool.getConnection();
 
@@ -189,7 +190,7 @@ export async function createSession(req: Request, res: Response) {
     sessionId,
     setTimeout(() => {
       connection.release();
-    }, 30_000)
+    }, 30_000),
   );
 
   return res.json({ session: sessionId });
