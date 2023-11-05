@@ -3,9 +3,9 @@
   "version": "0.0.3",
   "scripts": {
     "build": "tsc",
-    "lint": "rome check ./src/*",
-    "fmt": "rome format --write ./src/*",
-    "ci": "rome ci ./src/*",
+    "lint": "biome check ./src/*",
+    "fmt": "biome format --write ./src/*",
+    "ci": "biome ci ./src/*",
     "prepare": "husky install"
   },
   "dependencies": {
