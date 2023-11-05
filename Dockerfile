@@ -4,10 +4,11 @@ WORKDIR /usr/src/app
 
 COPY *.json ./
 
-RUN npm i
+RUN npm i -g pnpm
+RUN pnpm i
 
 COPY src ./src/
 
-RUN npm run build
+RUN pnpm build
 
 CMD [ "node", "dist/index.js" ]

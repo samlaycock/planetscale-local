@@ -71,6 +71,8 @@ export async function executeQuery(
     session: string;
   };
 
+  console.log(query, session);
+
   try {
     const connection = connections.has(session)
       ? (connections.get(session) as PoolConnection)
@@ -96,7 +98,7 @@ export async function executeQuery(
         result.rows = result.rows || [];
 
         if (Array.isArray(row)) {
-          row.forEach((singleRow) => {
+          for (const singleRow of row) {
             const lengths: string[] = [];
             let rawValue = "";
 
@@ -119,7 +121,7 @@ export async function executeQuery(
               lengths,
               values: btoa(rawValue),
             });
-          });
+          }
         } else if (typeof row.procotol41 === "undefined") {
           const lengths: string[] = [];
           let rawValue = "";

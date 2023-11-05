@@ -10,19 +10,19 @@
     ".dockerignore": "ignore"
   },
   "[json]": {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
