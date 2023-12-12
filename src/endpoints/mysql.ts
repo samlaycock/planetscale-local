@@ -108,7 +108,11 @@ export async function executeQuery(
               if (typeof field !== "undefined") {
                 if (field === null) {
                   lengths.push("0");
-                } else {
+                }
+								else if (fieldValue === null){
+                  lengths.push("-1");
+								}
+								else {
                   const value = `${fieldValue}`;
 
                   lengths.push(`${value.length}`);
@@ -132,7 +136,11 @@ export async function executeQuery(
             if (typeof field !== "undefined") {
               if (field === null) {
                 lengths.push("0");
-              } else {
+              } 
+							else if (fieldValue === null){
+                lengths.push("-1");
+							}
+							else {
                 const value = `${fieldValue}`;
 
                 lengths.push(`${value.length}`);
